@@ -1,0 +1,15 @@
+D:\Study\OperatingSystem\CPUSchedulingSimulator\CPU_Scheduling_Simulator\obj\Debug\net6.0\CPU_Scheduling_Simulator.csproj.AssemblyReference.cache
+D:\Study\OperatingSystem\CPUSchedulingSimulator\CPU_Scheduling_Simulator\obj\Debug\net6.0\CPU_Scheduling_Simulator.GeneratedMSBuildEditorConfig.editorconfig
+D:\Study\OperatingSystem\CPUSchedulingSimulator\CPU_Scheduling_Simulator\obj\Debug\net6.0\CPU_Scheduling_Simulator.AssemblyInfoInputs.cache
+D:\Study\OperatingSystem\CPUSchedulingSimulator\CPU_Scheduling_Simulator\obj\Debug\net6.0\CPU_Scheduling_Simulator.AssemblyInfo.cs
+D:\Study\OperatingSystem\CPUSchedulingSimulator\CPU_Scheduling_Simulator\obj\Debug\net6.0\CPU_Scheduling_Simulator.csproj.CoreCompileInputs.cache
+D:\Study\OperatingSystem\CPUSchedulingSimulator\CPU_Scheduling_Simulator\bin\Debug\net6.0\CPU_Scheduling_Simulator.exe
+D:\Study\OperatingSystem\CPUSchedulingSimulator\CPU_Scheduling_Simulator\bin\Debug\net6.0\CPU_Scheduling_Simulator.deps.json
+D:\Study\OperatingSystem\CPUSchedulingSimulator\CPU_Scheduling_Simulator\bin\Debug\net6.0\CPU_Scheduling_Simulator.runtimeconfig.json
+D:\Study\OperatingSystem\CPUSchedulingSimulator\CPU_Scheduling_Simulator\bin\Debug\net6.0\CPU_Scheduling_Simulator.dll
+D:\Study\OperatingSystem\CPUSchedulingSimulator\CPU_Scheduling_Simulator\bin\Debug\net6.0\CPU_Scheduling_Simulator.pdb
+D:\Study\OperatingSystem\CPUSchedulingSimulator\CPU_Scheduling_Simulator\obj\Debug\net6.0\CPU_Scheduling_Simulator.dll
+D:\Study\OperatingSystem\CPUSchedulingSimulator\CPU_Scheduling_Simulator\obj\Debug\net6.0\refint\CPU_Scheduling_Simulator.dll
+D:\Study\OperatingSystem\CPUSchedulingSimulator\CPU_Scheduling_Simulator\obj\Debug\net6.0\CPU_Scheduling_Simulator.pdb
+D:\Study\OperatingSystem\CPUSchedulingSimulator\CPU_Scheduling_Simulator\obj\Debug\net6.0\CPU_Scheduling_Simulator.genruntimeconfig.cache
+D:\Study\OperatingSystem\CPUSchedulingSimulator\CPU_Scheduling_Simulator\obj\Debug\net6.0\ref\CPU_Scheduling_Simulator.dll
