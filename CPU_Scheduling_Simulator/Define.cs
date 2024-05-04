@@ -8,15 +8,19 @@ public class Define
 {
     public class Process
     {
+        #region 입력받는 프로세스 정보
         public string ProcessId { get; set; }
         public int ArrivalTime { get; set; }
         public int ServiceTime { get; set; }
         public float Priority { get; set; }
         public int TimeQuantum { get; set; }
-        public int UseTime { get; set; }
+        #endregion
 
+        #region 스케줄링 수행 및 성능 분석에 필요한 추가 정보
+        public int UseTime { get; set; }
         public Performance Performance { get; set; }
         public bool Responsed { get; set; }
+        #endregion
 
         public Process(string processId, string arrivalTime, string serviceTime, string priority, string timeQuantum)
         {

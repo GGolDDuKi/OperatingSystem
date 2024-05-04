@@ -9,45 +9,21 @@ public abstract class PScheduler : Scheduler
 {
     public override void AllocatingCPU()
     {
+        NoWorkingProcess();
+
         if (WorkingProcess == null)
-        {
-            WorkingProcess = FindProcess();
-        }
+            return;
 
         if (WorkingProcess.ServiceTime == 0)
         {
-            if (WorkingProcess.Responsed == false)
-                WorkingProcess.Responsed = true;
-
-            EndProcess.Add(WorkingProcess);
-            ChangeWorkingProcess();
+            ProcessEnd();
         }
         else if (WorkingProcess.UseTime >= WorkingProcess.TimeQuantum)
         {
-            if (WorkingProcess.Responsed == false)
-                WorkingProcess.Responsed = true;
-
-            WorkingProcess.UseTime = 0;
-            ReadyProcess.Add(WorkingProcess);
-            ChangeWorkingProcess();
+            EndTimeSlice();
         }
         else
-        {
-            WorkingProcess.ServiceTime--;
-            WorkingProcess.UseTime++;
-        }
-    }
-
-    void ChangeWorkingProcess()
-    {
-        if (ReadyProcess.Count > 0)
-        {
-            WorkingProcess = FindProcess();
-            WorkingProcess.ServiceTime--;
-            WorkingProcess.UseTime++;
-        }
-        else
-            WorkingProcess = null;
+            Work();
     }
 
     public abstract override Process FindProcess();

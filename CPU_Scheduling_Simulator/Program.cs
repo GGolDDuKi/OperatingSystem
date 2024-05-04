@@ -10,6 +10,8 @@ public class Program
     {
         ReadProcessInput(@"..\..\..\ProcessInput.txt");
 
+        #region 각 스케줄러 알고리즘 수행
+
         FCFS fcfs = new FCFS();
         fcfs.Scheduling();
 
@@ -30,6 +32,8 @@ public class Program
 
         HRN hrn = new HRN();
         hrn.Scheduling();
+
+        #endregion
     }
 
     static void ReadProcessInput(string filePath)

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Study\\OperatingSystem\\CPUSchedulingSimulator\\CPU_Scheduling_Simulator\\CPU_Scheduling_Simulator.csproj": {}
+    "D:\\Study\\OperatingSystem\\CPU_Scheduling_Simulator\\CPU_Scheduling_Simulator.csproj": {}
   },
   "projects": {
-    "D:\\Study\\OperatingSystem\\CPUSchedulingSimulator\\CPU_Scheduling_Simulator\\CPU_Scheduling_Simulator.csproj": {
+    "D:\\Study\\OperatingSystem\\CPU_Scheduling_Simulator\\CPU_Scheduling_Simulator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Study\\OperatingSystem\\CPUSchedulingSimulator\\CPU_Scheduling_Simulator\\CPU_Scheduling_Simulator.csproj",
+        "projectUniqueName": "D:\\Study\\OperatingSystem\\CPU_Scheduling_Simulator\\CPU_Scheduling_Simulator.csproj",
         "projectName": "CPU_Scheduling_Simulator",
-        "projectPath": "D:\\Study\\OperatingSystem\\CPUSchedulingSimulator\\CPU_Scheduling_Simulator\\CPU_Scheduling_Simulator.csproj",
+        "projectPath": "D:\\Study\\OperatingSystem\\CPU_Scheduling_Simulator\\CPU_Scheduling_Simulator.csproj",
         "packagesPath": "C:\\Users\\MINUK\\.nuget\\packages\\",
-        "outputPath": "D:\\Study\\OperatingSystem\\CPUSchedulingSimulator\\CPU_Scheduling_Simulator\\obj\\",
+        "outputPath": "D:\\Study\\OperatingSystem\\CPU_Scheduling_Simulator\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\MINUK\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -7,11 +7,13 @@ using static Define;
 
 public abstract class Scheduler
 {
+    #region 스케줄링 및 출력에 필요한 필드
     protected Process? WorkingProcess { get; set; }
     protected List<Process> ReadyProcess { get; set; }
     protected List<Process> EndProcess { get; set; }
     protected string GanttChart { get; set; }
     public int Timer { get; set; }
+    #endregion
 
     public Scheduler()
     {
@@ -21,9 +23,11 @@ public abstract class Scheduler
         Timer = 0;
     }
 
+    //모든 스케줄링 알고리즘들은 해당 메서드들을 오버라이드하여 CPU를 할당받을 프로세스를 찾고, CPU를 할당
     public abstract void AllocatingCPU();
     public abstract Process FindProcess();
 
+    //스케줄링을 실행
     public void Scheduling()
     {
         do
@@ -44,6 +48,7 @@ public abstract class Scheduler
         OutputResult();
     }
 
+    //스케줄링을 수행한 결과를 출력
     public void OutputResult()
     {
         if(ReadyProcess.Count > 0)
@@ -81,7 +86,71 @@ public abstract class Scheduler
         Console.WriteLine($"평균 반환시간 : {totalReturnTime / EndProcess.Count}");
         Console.WriteLine("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
     }
-    
+
+    //작업이 완료된 프로세스 처리
+    protected void ProcessEnd()
+    {
+        if (WorkingProcess == null)
+            return;
+
+        ProcessResponse();
+        EndProcess.Add(WorkingProcess);
+        ChangeWorkingProcess();
+    }
+
+    //WorkingProcess에 할당된 프로세스가 없을 경우 찾아서 할당
+    protected void NoWorkingProcess()
+    {
+        if (WorkingProcess == null)
+            WorkingProcess = FindProcess();
+    }
+
+    //타임슬라이스를 모두 사용한 프로세스 처리
+    protected void EndTimeSlice()
+    {
+        if (WorkingProcess == null)
+            return;
+
+        ProcessResponse();
+        ReadyProcess.Add(WorkingProcess);
+        ChangeWorkingProcess();
+    }
+
+    //CPU할당할 프로세스를 교환하고 작업 수행
+    protected void ChangeWorkingProcess()
+    {
+        if (ReadyProcess.Count > 0)
+        {
+            WorkingProcess = FindProcess();
+            Work();
+        }
+        else
+            WorkingProcess = null;
+    }
+
+    //CPU가 할당된 프로세스의 작업을 수행
+    protected void Work()
+    {
+        if (WorkingProcess == null)
+            return;
+
+        WorkingProcess.ServiceTime--;
+        WorkingProcess.UseTime++;
+    }
+
+    //프로세스의 응답 여부
+    protected void ProcessResponse()
+    {
+        if (WorkingProcess == null)
+            return;
+
+        if (WorkingProcess.Responsed == false)
+            WorkingProcess.Responsed = true;
+
+        WorkingProcess.UseTime = 0;
+    }
+
+    //프로세스의 도착시간에 맞춰 준비리스트에 프로세스를 추가
     void AddProcess()
     {
         foreach (var process in Program._processes)
@@ -93,6 +162,7 @@ public abstract class Scheduler
         }
     }
 
+    //현재 CPU가 할당된 프로세스를 간트차트에 표시
     void SetGanttChart()
     {
         if (WorkingProcess == null)
@@ -101,17 +171,16 @@ public abstract class Scheduler
             GanttChart += $"|{WorkingProcess.ProcessId}|";
     }
 
+    //준비상태인 프로세스의 대기시간 증가
     void IncreasingWaitingTime()
     {
         foreach(var process in ReadyProcess)
         {
-            if (process.ArrivalTime >= Timer)
-                continue;
-
             process.Performance.WaitingTime++;
         }
     }
 
+    //현재까지 응답하지 않은 프로세스의 응답시간 증가
     void IncreasingResponseTime()
     {
         if (WorkingProcess != null)
@@ -120,14 +189,12 @@ public abstract class Scheduler
 
         foreach (var process in ReadyProcess)
         {
-            if (process.ArrivalTime >= Timer)
-                continue;
-
             if (process.Responsed == false)
                 process.Performance.ResponseTime++;
         }
     }
 
+    //완료되지 않은 프로세스의 반환시간 증가
     void IncreasingReturnTime()
     {
         if(WorkingProcess != null)
@@ -135,13 +202,11 @@ public abstract class Scheduler
 
         foreach (var process in ReadyProcess)
         {
-            if (process.ArrivalTime >= Timer)
-                continue;
-
             process.Performance.ReturnTime++;
         }
     }
 
+    //프로세스를 준비리스트에 추가할 때, 기존 프로세스 정보를 깊은 복사하여 반환
     public Process CopyProcess(Process process)
     {
         Process addProcess = new Process(process.ProcessId, process.ArrivalTime, process.ServiceTime, process.Priority, process.TimeQuantum);

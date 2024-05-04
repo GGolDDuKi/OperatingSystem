@@ -9,34 +9,22 @@ public class PP : Scheduler
 {
     public override void AllocatingCPU()
     {
+        NoWorkingProcess();
+
         if (WorkingProcess == null)
-        {
-            WorkingProcess = FindProcess();
-        }
+            return;
 
         if (WorkingProcess.ServiceTime == 0)
         {
-            if (WorkingProcess.Responsed == false)
-                WorkingProcess.Responsed = true;
-
-            EndProcess.Add(WorkingProcess);
-
-            if (ReadyProcess.Count > 0)
-            {
-                WorkingProcess = FindProcess();
-                WorkingProcess.ServiceTime--;
-            }
-            else
-                WorkingProcess = null;
+            ProcessEnd();
         }
-        else if(CheckPriority())
+        else if (CheckPriority())
         {
             ReadyProcess.Add(WorkingProcess);
-            WorkingProcess = FindProcess();
-            WorkingProcess.ServiceTime--;
+            ChangeWorkingProcess();
         }
         else
-            WorkingProcess.ServiceTime--;
+            Work();
     }
 
     public override Process FindProcess()

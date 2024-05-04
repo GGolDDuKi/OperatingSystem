@@ -9,26 +9,17 @@ public abstract class NPScheduler : Scheduler
 {
     public override void AllocatingCPU()
     {
+        NoWorkingProcess();
+
         if (WorkingProcess == null)
-        {
-            WorkingProcess = FindProcess();
-        }
+            return;
 
         if (WorkingProcess.ServiceTime == 0)
         {
-            WorkingProcess.Responsed = true;
-            EndProcess.Add(WorkingProcess);
-
-            if (ReadyProcess.Count > 0)
-            {
-                WorkingProcess = FindProcess();
-                WorkingProcess.ServiceTime--;
-            }
-            else
-                WorkingProcess = null;
+            ProcessEnd();
         }
         else
-            WorkingProcess.ServiceTime--;
+            Work();
     }
 
     public abstract override Process FindProcess();
